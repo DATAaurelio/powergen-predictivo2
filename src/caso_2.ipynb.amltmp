@@ -1055,6 +1055,126 @@
           "logged": 1739443946515
         }
       }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "frecuencia_mto = del_df_historicos_ordenes.groupby('ID_Equipo')['ID_Orden'].count().reset_index(name='Frecuencia_Mto')\n",
+        "frecuencia_mto"
+      ],
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "execution_count": 79,
+          "data": {
+            "text/plain": "     ID_Equipo  Frecuencia_Mto\n0            1              22\n1            2              24\n2            3              12\n3            4              21\n4            5              18\n..         ...             ...\n494        495              20\n495        496              16\n496        497              23\n497        498              21\n498        499              15\n\n[499 rows x 2 columns]",
+            "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID_Equipo</th>\n      <th>Frecuencia_Mto</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1</td>\n      <td>22</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>2</td>\n      <td>24</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>3</td>\n      <td>12</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>4</td>\n      <td>21</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>5</td>\n      <td>18</td>\n    </tr>\n    <tr>\n      <th>...</th>\n      <td>...</td>\n      <td>...</td>\n    </tr>\n    <tr>\n      <th>494</th>\n      <td>495</td>\n      <td>20</td>\n    </tr>\n    <tr>\n      <th>495</th>\n      <td>496</td>\n      <td>16</td>\n    </tr>\n    <tr>\n      <th>496</th>\n      <td>497</td>\n      <td>23</td>\n    </tr>\n    <tr>\n      <th>497</th>\n      <td>498</td>\n      <td>21</td>\n    </tr>\n    <tr>\n      <th>498</th>\n      <td>499</td>\n      <td>15</td>\n    </tr>\n  </tbody>\n</table>\n<p>499 rows × 2 columns</p>\n</div>"
+          },
+          "metadata": {}
+        }
+      ],
+      "execution_count": 79,
+      "metadata": {
+        "gather": {
+          "logged": 1739445709514
+        }
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Vida útil"
+      ],
+      "metadata": {
+        "nteract": {
+          "transient": {
+            "deleting": false
+          }
+        }
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "vida_util = del_df_registros_condiciones.groupby('ID_Equipo')['Horas_Operativas'].sum().reset_index(name='Vida_Util')\n",
+        "vida_util"
+      ],
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "execution_count": 82,
+          "data": {
+            "text/plain": "     ID_Equipo  Vida_Util\n0            1   870072.0\n1            2  1222267.0\n2            3  1150839.0\n3            4  1214358.0\n4            5   654608.0\n..         ...        ...\n494        495   713036.0\n495        496   576452.0\n496        497   383687.0\n497        498  1077490.0\n498        499   684801.0\n\n[499 rows x 2 columns]",
+            "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID_Equipo</th>\n      <th>Vida_Util</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1</td>\n      <td>870072.0</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>2</td>\n      <td>1222267.0</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>3</td>\n      <td>1150839.0</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>4</td>\n      <td>1214358.0</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>5</td>\n      <td>654608.0</td>\n    </tr>\n    <tr>\n      <th>...</th>\n      <td>...</td>\n      <td>...</td>\n    </tr>\n    <tr>\n      <th>494</th>\n      <td>495</td>\n      <td>713036.0</td>\n    </tr>\n    <tr>\n      <th>495</th>\n      <td>496</td>\n      <td>576452.0</td>\n    </tr>\n    <tr>\n      <th>496</th>\n      <td>497</td>\n      <td>383687.0</td>\n    </tr>\n    <tr>\n      <th>497</th>\n      <td>498</td>\n      <td>1077490.0</td>\n    </tr>\n    <tr>\n      <th>498</th>\n      <td>499</td>\n      <td>684801.0</td>\n    </tr>\n  </tbody>\n</table>\n<p>499 rows × 2 columns</p>\n</div>"
+          },
+          "metadata": {}
+        }
+      ],
+      "execution_count": 82,
+      "metadata": {
+        "gather": {
+          "logged": 1739446009574
+        }
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "del_df_caracteristicas_equipos.head(10)"
+      ],
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "execution_count": 85,
+          "data": {
+            "text/plain": "   ID_Equipo    Tipo_Equipo Fabricante Modelo  Potencia_kW  \\\n0          1      Compresor    Siemens   Z300       3429.0   \n1          2  Transformador    Siemens   Y200         75.0   \n2          3      Compresor        ABB   Z300       4526.0   \n3          4      Compresor         GE   X100       3981.0   \n4          5          Motor    Siemens   Y200        377.0   \n5          6  Transformador         GE   M400        423.0   \n6          7  Transformador    Siemens   X100       2249.0   \n7          8          Motor        ABB   X100       3607.0   \n8          9      Generador         GE   Y200       3960.0   \n9         10          Motor  Schneider   M400        465.0   \n\n   Horas_Recomendadas_Revision  \n0                         7725  \n1                         7390  \n2                         5238  \n3                         8933  \n4                         5978  \n5                         5091  \n6                         2896  \n7                         3554  \n8                         9489  \n9                         9859  ",
+            "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID_Equipo</th>\n      <th>Tipo_Equipo</th>\n      <th>Fabricante</th>\n      <th>Modelo</th>\n      <th>Potencia_kW</th>\n      <th>Horas_Recomendadas_Revision</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1</td>\n      <td>Compresor</td>\n      <td>Siemens</td>\n      <td>Z300</td>\n      <td>3429.0</td>\n      <td>7725</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>2</td>\n      <td>Transformador</td>\n      <td>Siemens</td>\n      <td>Y200</td>\n      <td>75.0</td>\n      <td>7390</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>3</td>\n      <td>Compresor</td>\n      <td>ABB</td>\n      <td>Z300</td>\n      <td>4526.0</td>\n      <td>5238</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>4</td>\n      <td>Compresor</td>\n      <td>GE</td>\n      <td>X100</td>\n      <td>3981.0</td>\n      <td>8933</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>5</td>\n      <td>Motor</td>\n      <td>Siemens</td>\n      <td>Y200</td>\n      <td>377.0</td>\n      <td>5978</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>6</td>\n      <td>Transformador</td>\n      <td>GE</td>\n      <td>M400</td>\n      <td>423.0</td>\n      <td>5091</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>7</td>\n      <td>Transformador</td>\n      <td>Siemens</td>\n      <td>X100</td>\n      <td>2249.0</td>\n      <td>2896</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>8</td>\n      <td>Motor</td>\n      <td>ABB</td>\n      <td>X100</td>\n      <td>3607.0</td>\n      <td>3554</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>9</td>\n      <td>Generador</td>\n      <td>GE</td>\n      <td>Y200</td>\n      <td>3960.0</td>\n      <td>9489</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>10</td>\n      <td>Motor</td>\n      <td>Schneider</td>\n      <td>M400</td>\n      <td>465.0</td>\n      <td>9859</td>\n    </tr>\n  </tbody>\n</table>\n</div>"
+          },
+          "metadata": {}
+        }
+      ],
+      "execution_count": 85,
+      "metadata": {
+        "gather": {
+          "logged": 1739446181303
+        }
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "df_merged = pd.merge(frecuencia_mto, vida_util, on='ID_Equipo')\n",
+        "df_merged\n",
+        "\n",
+        "new_del_df_caracteristicas_equipos = pd.merge(del_df_caracteristicas_equipos,df_merged, on='ID_Equipo')\n",
+        "new_del_df_caracteristicas_equipos"
+      ],
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "execution_count": 87,
+          "data": {
+            "text/plain": "     ID_Equipo    Tipo_Equipo Fabricante Modelo  Potencia_kW  \\\n0            1      Compresor    Siemens   Z300       3429.0   \n1            2  Transformador    Siemens   Y200         75.0   \n2            3      Compresor        ABB   Z300       4526.0   \n3            4      Compresor         GE   X100       3981.0   \n4            5          Motor    Siemens   Y200        377.0   \n..         ...            ...        ...    ...          ...   \n494        495          Motor  Schneider   Z300       3933.0   \n495        496  Transformador  Schneider   Z300        544.0   \n496        497      Compresor         GE   M400       3296.0   \n497        498      Generador    Siemens   X100       4231.0   \n498        499          Motor    Siemens   Y200       3155.0   \n\n     Horas_Recomendadas_Revision  Frecuencia_Mto  Vida_Util  \n0                           7725              22   870072.0  \n1                           7390              24  1222267.0  \n2                           5238              12  1150839.0  \n3                           8933              21  1214358.0  \n4                           5978              18   654608.0  \n..                           ...             ...        ...  \n494                         7775              20   713036.0  \n495                         3331              16   576452.0  \n496                         8256              23   383687.0  \n497                         9047              21  1077490.0  \n498                          932              15   684801.0  \n\n[499 rows x 8 columns]",
+            "text/html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID_Equipo</th>\n      <th>Tipo_Equipo</th>\n      <th>Fabricante</th>\n      <th>Modelo</th>\n      <th>Potencia_kW</th>\n      <th>Horas_Recomendadas_Revision</th>\n      <th>Frecuencia_Mto</th>\n      <th>Vida_Util</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1</td>\n      <td>Compresor</td>\n      <td>Siemens</td>\n      <td>Z300</td>\n      <td>3429.0</td>\n      <td>7725</td>\n      <td>22</td>\n      <td>870072.0</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>2</td>\n      <td>Transformador</td>\n      <td>Siemens</td>\n      <td>Y200</td>\n      <td>75.0</td>\n      <td>7390</td>\n      <td>24</td>\n      <td>1222267.0</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>3</td>\n      <td>Compresor</td>\n      <td>ABB</td>\n      <td>Z300</td>\n      <td>4526.0</td>\n      <td>5238</td>\n      <td>12</td>\n      <td>1150839.0</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>4</td>\n      <td>Compresor</td>\n      <td>GE</td>\n      <td>X100</td>\n      <td>3981.0</td>\n      <td>8933</td>\n      <td>21</td>\n      <td>1214358.0</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>5</td>\n      <td>Motor</td>\n      <td>Siemens</td>\n      <td>Y200</td>\n      <td>377.0</td>\n      <td>5978</td>\n      <td>18</td>\n      <td>654608.0</td>\n    </tr>\n    <tr>\n      <th>...</th>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n      <td>...</td>\n    </tr>\n    <tr>\n      <th>494</th>\n      <td>495</td>\n      <td>Motor</td>\n      <td>Schneider</td>\n      <td>Z300</td>\n      <td>3933.0</td>\n      <td>7775</td>\n      <td>20</td>\n      <td>713036.0</td>\n    </tr>\n    <tr>\n      <th>495</th>\n      <td>496</td>\n      <td>Transformador</td>\n      <td>Schneider</td>\n      <td>Z300</td>\n      <td>544.0</td>\n      <td>3331</td>\n      <td>16</td>\n      <td>576452.0</td>\n    </tr>\n    <tr>\n      <th>496</th>\n      <td>497</td>\n      <td>Compresor</td>\n      <td>GE</td>\n      <td>M400</td>\n      <td>3296.0</td>\n      <td>8256</td>\n      <td>23</td>\n      <td>383687.0</td>\n    </tr>\n    <tr>\n      <th>497</th>\n      <td>498</td>\n      <td>Generador</td>\n      <td>Siemens</td>\n      <td>X100</td>\n      <td>4231.0</td>\n      <td>9047</td>\n      <td>21</td>\n      <td>1077490.0</td>\n    </tr>\n    <tr>\n      <th>498</th>\n      <td>499</td>\n      <td>Motor</td>\n      <td>Siemens</td>\n      <td>Y200</td>\n      <td>3155.0</td>\n      <td>932</td>\n      <td>15</td>\n      <td>684801.0</td>\n    </tr>\n  </tbody>\n</table>\n<p>499 rows × 8 columns</p>\n</div>"
+          },
+          "metadata": {}
+        }
+      ],
+      "execution_count": 87,
+      "metadata": {
+        "gather": {
+          "logged": 1739446519382
+        }
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "new_del_df_caracteristicas_equipos.to_csv('../output/Caracteristicas_Equipos_Agregado.csv',)"
+      ],
+      "outputs": [],
+      "execution_count": null,
+      "metadata": {}
     }
   ],
   "metadata": {
