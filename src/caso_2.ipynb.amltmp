@@ -2933,22 +2933,64 @@
       "source": [
         "!pip install pandas pyarrow sqlalchemy psycopg2"
       ],
-      "outputs": [],
-      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": "Requirement already satisfied: pandas in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (2.2.3)\r\nRequirement already satisfied: pyarrow in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (14.0.2)\r\nRequirement already satisfied: sqlalchemy in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (2.0.37)\r\nRequirement already satisfied: psycopg2 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (2.9.9)\r\nRequirement already satisfied: tzdata>=2022.7 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from pandas) (2024.1)\r\nRequirement already satisfied: numpy>=1.22.4 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from pandas) (1.23.5)\r\nRequirement already satisfied: python-dateutil>=2.8.2 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from pandas) (2.9.0.post0)\r\nRequirement already satisfied: pytz>=2020.1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from pandas) (2022.5)\r\nRequirement already satisfied: typing-extensions>=4.6.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from sqlalchemy) (4.12.2)\r\nRequirement already satisfied: greenlet!=0.4.17 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from sqlalchemy) (3.1.1)\r\nRequirement already satisfied: six>=1.5 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from python-dateutil>=2.8.2->pandas) (1.16.0)\r\n"
+        }
+      ],
+      "execution_count": 112,
       "metadata": {}
     },
     {
       "cell_type": "code",
       "source": [
-        "#El csv limpio sería equipos_info y se encuentra en output\n",
+        "from sqlalchemy import create_engine\n",
         "\n",
-        "#No sé cómo llevar a Postgres "
+        "# Conexión a Base de Datos en Neon\n",
+        "PGHOST='ep-tiny-truth-a28lcfjp.eu-central-1.aws.neon.tech'\n",
+        "PGDATABASE='caso_practico'\n",
+        "PGUSER='datafundamentals_owner'\n",
+        "PGPASSWORD='ysREpYW2wV4j'\n",
+        "\n",
+        "import psycopg2\n",
+        "def create_server_connection():\n",
+        "    conn = None\n",
+        "    try:\n",
+        "        conn = psycopg2.connect(database=PGDATABASE, user=PGUSER, password=PGPASSWORD, host=PGHOST, port=5432)\n",
+        "        print(\"Database conn successful\")\n",
+        "    except Error as err:\n",
+        "        print(f\"Error: '{err}'\")\n",
+        "    return conn\n",
+        "connection = create_server_connection()\n",
+        "\n",
+        "\n",
+        "#Abrimos el cursor que conecta con la orden que probamos en NEON y funcionaba\n",
+        "cur = connection.cursor()\n",
+        "\n",
+        "engine = create_engine('postgresql+psycopg2://', creator=lambda: connection)\n",
+        "# Enviar el DataFrame a la base de datos y crear una tabla\n",
+        "equipos_info.to_sql('equipos_info', engine, if_exists='replace', index=False)\n",
+        "\n",
+        "\n",
+        "#Cerramos cursor    \n",
+        "cur.close()\n",
+        "\n",
+        "#Cerramos conexion\n",
+        "connection.close()\n"
       ],
-      "outputs": [],
-      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": "Database conn successful\n"
+        }
+      ],
+      "execution_count": 114,
       "metadata": {
         "gather": {
-          "logged": 1740045159055
+          "logged": 1740047923195
         }
       }
     },
